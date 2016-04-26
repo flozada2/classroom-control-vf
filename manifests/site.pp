@@ -65,3 +65,4 @@ node default {
 #  content => "Today I learned what it means to manage state using Puppet.\n",
 #}
 include users
+}
