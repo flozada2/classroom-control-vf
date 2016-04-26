@@ -13,5 +13,4 @@ mode => '0644',
 source => 'puppet:///modules/skeleton/bashrc',
 }
 }
-Exercise 9.3: Proposed Solution
-VirtualFundamentals
+
