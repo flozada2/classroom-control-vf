@@ -43,7 +43,7 @@ file { '/etc/motd':
 package { 'cowsay':
   ensure   => present,
   provider => gem,
-
+}
 # The default node definition matches any node lacking a more specific node
 # definition. If there are no other nodes in this file, classes declared here
 # will be included in every node's catalog, *in addition* to any classes
@@ -53,5 +53,14 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
+  
   notify { "Hello, my name is ${::hostname}": }
+}
+
+file { '/etc/motd':
+  ensure  => file,
+  owner   => 'root',
+  group   => 'root',
+  mode    => '0644',
+  content => "Today I learned what it means to manage state using Puppet.\n",
 }
