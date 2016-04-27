@@ -32,18 +32,7 @@ ini_setting { 'random ordering':
 # Node definitions in this file are merged with node data from the console. See
 # http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
 # node definitions.
-file { '/etc/motd':
-  ensure  => file,
-  owner   => 'root',
-  group   => 'root',
-  mode    => '0644',
-  content => "Today I learned what it means to manage state using Puppet.\n",
-}
 
-package { 'cowsay':
-  ensure   => present,
-  provider => gem,
-}
 # The default node definition matches any node lacking a more specific node
 # definition. If there are no other nodes in this file, classes declared here
 # will be included in every node's catalog, *in addition* to any classes
@@ -53,18 +42,30 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  
- # notify { "Hello, my name is ${::hostname}": }
-#}
+  notify { 'hostmessage':
+    message => "Hello World! This node's name is ${::hostname}",
+  }
 
-#file { '/etc/motd':
- # ensure  => file,
-  #owner   => 'root',
-  #group   => 'root',
-  #mode    => '0644',
-#  content => "Today I learned what it means to manage state using Puppet.\n",
+  include memcached
+  include nginx
+
+  #file { '/etc/motd':
+  #  ensure  => file,
+  #  owner   => 'root',
+  #  group   => 'root',
+  #  mode    => '0644',
+  #  content => "Hey hey, we're the MONKEYS\n",
+  #}
+
+  #exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd":
+  #  path    => '/usr/local/bin',
+  #  creates => '/etc/motd',
+  #}
+
+  #host { 'testing.puppetlabs.vm':
+  #  ensure => present,
+  #  ip     => '127.0.0.1',
+  #}
+
+
 }
-#include users
-#include skeleton
-#include memcached
-include nginx
