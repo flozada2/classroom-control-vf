@@ -54,6 +54,7 @@ node default {
 
   include memcached
   include nginx
+  include  users::admins
 
   #file { '/etc/motd':
   #  ensure  => file,
