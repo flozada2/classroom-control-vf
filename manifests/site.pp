@@ -53,6 +53,9 @@ node default {
     message => $message,
   }
   include nginx
+  include epel
+  include redis
+  include limits
   #include memcached
   #class { 'nginx':
    # root => '/opt/www',
