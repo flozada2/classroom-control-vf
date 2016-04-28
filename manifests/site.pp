@@ -57,7 +57,6 @@ node default {
   class { 'nginx':
     root => '/opt/www',
   }
-  include nginx
 
   include users::admins
 
