@@ -51,6 +51,8 @@ node default {
   notify { 'hostmessage':
     message => $message,
   }
+    $message = hiera('message')
+  notify { $message: }
 
   include memcached
   include nginx
