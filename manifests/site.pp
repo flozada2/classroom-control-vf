@@ -43,20 +43,20 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-  if $::is_virtual {
-    $message = "HELLO VIRTUAL HOST ${::hostname}"
-  } else {
-    $message = "HELLO ${::hostname}"
-  }
+  # if $::is_virtual {
+  #   $message = "HELLO VIRTUAL HOST ${::hostname}"
+  # } else {
+  #   $message = "HELLO ${::hostname}"
+  # }
+  $message = hiera('message', 'DEFAULT MESSAGE')
   notify { 'hostmessage':
     message => $message,
   }
-    $message = hiera('message')
-  notify { $message: }
 
   include memcached
   include nginx
-  include  users::admins
+
+  include users::admins
 
   #file { '/etc/motd':
   #  ensure  => file,
