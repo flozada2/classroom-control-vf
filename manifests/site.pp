@@ -53,9 +53,11 @@ node default {
     message => $message,
   }
   include nginx
-  include epel
-  include redis
-  include limits
+  nginx::vhost { 'punch.puppetlabs.vm': }
+  nginx::vhost { 'judy.puppetlabs.vm' : }
+  #include epel
+  #include redis
+  #include limits
   #include memcached
   #class { 'nginx':
    # root => '/opt/www',
