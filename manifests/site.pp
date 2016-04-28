@@ -55,7 +55,7 @@ node default {
 
   include memcached
   class { 'nginx':
-    root => 'var/opt/www',
+    root => '/opt/www',
   }
 
   include users::admins
@@ -80,3 +80,4 @@ node default {
 
 
 }
+Status API Training Shop Blog About
