@@ -52,11 +52,11 @@ node default {
   notify { 'hostmessage':
     message => $message,
   }
-
+  include nginx
   include memcached
-  class { 'nginx':
-    root => '/opt/www',
-  }
+  #class { 'nginx':
+   # root => '/opt/www',
+  #}
 
   include users::admins
 
